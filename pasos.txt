@@ -1,0 +1,28 @@
+Crear ficheron en /etc/systemd/system/NOMBRE-SERVICO.service con el siguinte contenido
+
+# ***check_crit.service***
+[Unit]
+Description=Monitorea conectividad con servidores criticos
+After=multi-user.target
+
+[Service]
+Type=simple
+ExecStart=/root/check_crit/main.sh
+User=root
+WorkingDirectory=/root/check_crit
+Restart=on-failure
+StandardOutput=syslog
+StandardError=syslog
+
+[Install]
+WantedBy=multi-user.target
+
+Asegurarse que el script tenga el interprete adecuado y permisos de ejecucion.
+
+Luego ejecutar
+systemctl daemon-reload
+systemctl enable check_crit.service
+systemctl start check_crit.service
+
+
+Listo!

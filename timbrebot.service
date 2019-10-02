@@ -1,0 +1,16 @@
+# ***Levanta el bot de telegram***
+[Unit]
+Description=Levanta el bot de telegram
+After=multi-user.target
+
+[Service]
+Type=simple
+ExecStart=/home/pi/timbre/timbre-bot.py
+User=root
+WorkingDirectory=/home/pi/timbre
+Restart=on-failure
+StandardOutput=syslog
+StandardError=syslog
+
+[Install]
+WantedBy=multi-user.target
